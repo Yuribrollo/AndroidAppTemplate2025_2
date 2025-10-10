@@ -38,6 +38,8 @@ class PerfilUsuarioFragment : Fragment() {
     private lateinit var usersReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
+    private lateinit var registerTelefoneEditText: EditText
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -61,6 +63,8 @@ class PerfilUsuarioFragment : Fragment() {
         registerConfirmPasswordEditText = view.findViewById(R.id.registerConfirmPasswordEditText)
         registerButton = view.findViewById(R.id.salvarButton)
         sairButton = view.findViewById(R.id.sairButton)
+        registerTelefoneEditText = view.findViewById(R.id.registerTelefoneEditText)
+
 
         try {
             usersReference = FirebaseDatabase.getInstance().getReference("users")
@@ -138,6 +142,7 @@ class PerfilUsuarioFragment : Fragment() {
                     val usuario = snapshot.getValue(Usuario::class.java)
                     usuario?.let {
                         registerEnderecoEditText.setText(it.endereco ?: "")
+                        registerTelefoneEditText.setText(it.telefone ?: "")
                     }
                 }
             }
@@ -151,6 +156,7 @@ class PerfilUsuarioFragment : Fragment() {
     private fun updateUser() {
         val name = registerNameEditText.text.toString().trim()
         val endereco = registerEnderecoEditText.text.toString().trim()
+        val telefone = registerTelefoneEditText.text.toString().trim()
 
         // Acessar currentUser
         val user = auth.currentUser
@@ -158,18 +164,19 @@ class PerfilUsuarioFragment : Fragment() {
         // Verifica se o usuário atual já está definido
         if (user != null) {
             // Se o usuário já existe, atualiza os dados
-            updateProfile(user, name, endereco)
+            updateProfile(user, name, endereco, telefone)
         } else {
             Toast.makeText(context, "Não foi possível encontrar o usuário logado", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun updateProfile(user: FirebaseUser?, displayName: String, endereco: String) {
+    private fun updateProfile(user: FirebaseUser?, displayName: String, endereco: String, telefone:String) {
         val profileUpdates = UserProfileChangeRequest.Builder()
             .setDisplayName(displayName)
             .build()
 
-        val usuario = Usuario(user?.uid.toString() , displayName, user?.email, endereco, )
+        val usuario = Usuario(user?.uid.toString() , displayName, user?.email, endereco, telefone)
+
 
         user?.updateProfile(profileUpdates)
             ?.addOnCompleteListener { task ->
