@@ -25,12 +25,37 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/item_endereco"
+                android:id="@+id/item_nome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Endereço:"
+                android:text="Nome:"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_especie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Espécie:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descrição:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
 
             <!-- Campos futuros aqui -->
         </LinearLayout>

@@ -45,13 +45,40 @@
 
 
     <EditText
-        android:id="@+id/enderecoItemEditText"
+        android:id="@+id/NomeItemEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Endereço"
+        android:hint="Nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_select_image" />
+
+    <EditText
+        android:id="@+id/EspecieEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Espécie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NomeItemEditText" />
+
+    <EditText
+        android:id="@+id/DataEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EspecieEditText" />
+
+    <EditText
+        android:id="@+id/DescEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Descrição"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DataEditText" />
 
 
     <Button
@@ -59,7 +86,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Salvar"
-        app:layout_constraintTop_toBottomOf="@id/enderecoItemEditText"
+        app:layout_constraintTop_toBottomOf="@id/DescEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
