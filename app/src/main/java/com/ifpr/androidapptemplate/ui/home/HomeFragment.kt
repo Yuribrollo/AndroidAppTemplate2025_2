@@ -39,15 +39,20 @@ import java.util.Locale
 import com.ifpr.androidapptemplate.R
 import com.ifpr.androidapptemplate.baseclasses.Item
 import com.ifpr.androidapptemplate.databinding.FragmentHomeBinding
+import android.content.Intent
+import android.net.Uri
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
+    private var mapsOpened = false
     private lateinit var currentAddressTextView: TextView
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     private lateinit var locationRequest: LocationRequest
+
+    private var lastKnownLocation: Location? = null
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -64,10 +69,33 @@ class HomeFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        // Inicializa GPS
         inicializaGerenciamentoLocalizacao(view)
 
+        // Carrega os itens do marketplace
         val container = view.findViewById<LinearLayout>(R.id.itemContainer)
         carregarItensMarketplace(container)
+
+        // Configura o botão "Ver no mapa"
+        val btnOpenMaps = view.findViewById<Button>(R.id.btnOpenMaps)
+        btnOpenMaps.setOnClickListener {
+            lastKnownLocation?.let { location ->
+                val uri = "geo:${location.latitude},${location.longitude}?q=${location.latitude},${location.longitude}(Minha+Localização)"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+
+                if (intent.resolveActivity(requireContext().packageManager) != null) {
+                    startActivity(intent)
+                } else {
+                    val browserIntent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.google.com/maps?q=${location.latitude},${location.longitude}")
+                    )
+                    startActivity(browserIntent)
+                }
+            } ?: run {
+                Toast.makeText(requireContext(), "Localização ainda não disponível", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         return view
     }
@@ -136,14 +164,14 @@ class HomeFragment : Fragment() {
             override fun onLocationResult(locationResult: LocationResult) {
                 locationResult.lastLocation?.let { location ->
                     displayAddress(location)
+                    lastKnownLocation = location
                 }
             }
         }
 
         locationRequest = LocationRequest.create().apply {
-            interval = 30000 // Intervalo em milissegundos para atualizacoes de localizacao
-            fastestInterval =
-                30000 // O menor intervalo de tempo para receber atualizacoes de localizacao
+            interval = 30000
+            fastestInterval = 30000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
 
