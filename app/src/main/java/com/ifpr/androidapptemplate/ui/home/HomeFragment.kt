@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
 
         // Carrega os itens do marketplace
         val itemContainer = view.findViewById<LinearLayout>(R.id.itemContainer)
-        carregarItensMarketplace(container)
+        carregarItensMarketplace(itemContainer)
 
         // Configura o botão "Ver no mapa"
         val btnOpenMaps = view.findViewById<Button>(R.id.btnOpenMaps)
