@@ -34,9 +34,6 @@ class AiLogicFragment : Fragment() {
 
     private var imageUri: Uri? = null
 
-    private lateinit var imageButton: Button
-    private var imageUri: Uri? = null
-    private lateinit var itemImageView: ImageView
 
 
     override fun onCreateView(
