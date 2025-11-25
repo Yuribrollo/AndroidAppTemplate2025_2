@@ -6,7 +6,7 @@ data class Item(
     val data: String? = null,
     val desc: String? = null,
     val base64Image: String? = null,
+    val endereco: String? = null,
     val imageUrl: String? = null
-
 
 )

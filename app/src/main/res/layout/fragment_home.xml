@@ -5,18 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/currentAddressTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+    <!-- Título -->
     <TextView
         android:id="@+id/text_home"
         android:layout_width="wrap_content"
@@ -25,16 +14,15 @@
         android:text="@string/title_itens"
         android:textSize="20sp"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/currentAddressTextView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
+    <!-- Texto para mostrar a localização do animal -->
     <TextView
         android:id="@+id/lastcurrentAddressTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Obtendo localização..."
         android:textSize="16sp"
         android:padding="8dp"
         android:layout_marginTop="8dp"
@@ -42,24 +30,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btnOpenMaps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver no mapa"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/lastcurrentAddressTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+    <!-- Container para os itens -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/btnOpenMaps"
+        app:layout_constraintTop_toBottomOf="@id/lastcurrentAddressTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/fab_ai">
 
         <LinearLayout
             android:id="@+id/itemContainer"
@@ -68,17 +47,16 @@
             android:layout_height="wrap_content" />
     </ScrollView>
 
+    <!-- Botão AI -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_ai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
         android:contentDescription="Abrir IA"
         android:src="@android:drawable/stat_notify_chat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
