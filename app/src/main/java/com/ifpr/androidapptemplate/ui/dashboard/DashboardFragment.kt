@@ -76,8 +76,8 @@ class DashboardFragment : Fragment() {
     ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val view = _binding!!.root
+        //binding.textCadastroUsuarioTitle.text = "Cadastrar"
 
-        // Inicializa elementos da interface
         itemImageView = view.findViewById(R.id.image_item)
         salvarButton = view.findViewById(R.id.salvarItemButton)
         selectImageButton = view.findViewById(R.id.button_select_image)
@@ -88,18 +88,14 @@ class DashboardFragment : Fragment() {
         locationTextView = view.findViewById(R.id.locationTextView)
         val getLocationButton = view.findViewById<Button>(R.id.button_get_location)
 
-        // Inicializa Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        // Inicializa localização
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        // Evento do botão "Selecionar imagem"
         selectImageButton.setOnClickListener {
             openFileChooser()
         }
 
-        // Evento do botão "Obter localização"
         getLocationButton.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(
                     requireContext(),
@@ -121,7 +117,6 @@ class DashboardFragment : Fragment() {
             }
         }
 
-        // Evento do botão "Salvar"
         salvarButton.setOnClickListener {
             salvarItem()
         }
